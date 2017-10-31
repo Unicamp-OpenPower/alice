@@ -44,7 +44,7 @@ class Wrapper:
         user.expiration = (timestring.Range("next " + expire)).end
 
         project_name = (user.name).title() + "'s project"
-        password     = __generate_password()
+        password     = self.__generate_password()
 
         user.project_name = project_name
         user.password = password
