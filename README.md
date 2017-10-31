@@ -59,7 +59,13 @@ In order create user's network configuration, you'll also need to add your exter
 
     OS_EXT_NET=<your_ext_network_id>
 
-Inside the `config` file, you'll find the standart network, subnet and quota configurations. You can customize it to fit your cloud needs.
+If you don't know your external network id, use this command to find:
+
+```
+openstack network list | grep 'public' | awk '{print $2}'
+```
+
+Inside the `config` file, you'll find the standard network, subnet and quota configurations. You can customize it to fit your cloud needs.
 
 ## Usage
 
