@@ -1,13 +1,13 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='alice',
-      version='0.2',
+      version='0.3',
       description='CLI user and project manager for Openstack',
-      url='https://gitlab.com/jwnx/alice',
-      author='Juliana R',
-      author_email='juliana.orod@gmail.com',
+      url='https://github.com/Unicamp-OpenPower/alice',
+      author='Juliana R, Rafael Pimenta',
+      author_email='juliana.orod@gmail.com, rafaelgpimenta@gmail.com',
       license='GPLv3',
-      packages=['alice'],
+      packages=find_packages(),
       install_requires=[
           'xkcdpass',
           'pathlib',
@@ -19,7 +19,8 @@ setup(name='alice',
           'prettytable',
           'dataset',
           'click',
-          'timestring'
+          'psycopg2',
+          'timestring-pleasantone'
       ],
       scripts=['bin/alice'],
       zip_safe=False)
