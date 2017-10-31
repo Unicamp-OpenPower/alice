@@ -26,9 +26,9 @@ class OpenstackBridge:
             auth = v3.Password(auth_url=env['OS_AUTH_URL'],
                                username=env['OS_USERNAME'],
                                password=env['OS_PASSWORD'],
-                               user_domain_name=env['OS_USER_DOMAIN_ID'],
+                               user_domain_name=env['OS_USER_DOMAIN_NAME'],
                                project_name=env['OS_PROJECT_NAME'],
-                               project_domain_name=env['OS_PROJECT_DOMAIN_ID'])
+                               project_domain_name=env['OS_PROJECT_DOMAIN_NAME'])
 
             sess = session.Session(auth=auth)
             keystone = client.Client(session=sess)
@@ -56,8 +56,8 @@ class OpenstackBridge:
                                         username=env['OS_USERNAME'],
                                         password=env['OS_PASSWORD'],
                                         project_name=env['OS_PROJECT_NAME'],
-                                        project_domain_name=env['OS_PROJECT_DOMAIN_ID'],
-                                        user_domain_name=env['OS_USER_DOMAIN_ID'])
+                                        project_domain_name=env['OS_PROJECT_DOMAIN_NAME'],
+                                        user_domain_name=env['OS_USER_DOMAIN_NAME'])
 
         sess = session.Session(auth=auth)
         nova = vclient.Client(2, session=sess)
@@ -68,10 +68,16 @@ class OpenstackBridge:
     # neutron_auth: Connects with neutrons auth server and
     # returns a client object.
     def neutron_auth(self, user):
-        neutron = nclient.Client(username=user.name,
-                                 password=user.password,
-                                 tenant_name=user.project_name,
-                                 auth_url='http://controller:5000/v2.0/')
+        auth = identity.Password(auth_url = env['OS_AUTH_URL'],
+                           username = user.name,
+                           password = user.password,
+                           project_name = user.project_name,
+                           project_domain_id = user.domain,
+                           user_domain_id = user.domain)
+
+        sess = session.Session(auth = auth)
+        neutron = nclient.Client(session = sess)
+
         return neutron
 
 
@@ -109,7 +115,7 @@ class OpenstackBridge:
     # by using quota dict
     def update_project_quota(self, tenant_id, nova):
         nova.quotas.update(tenant_id,
-                           intances     = var.quota['instances'],
+#                           intances     = var.quota['instances'],
                            cores        = var.quota['cores'],
                            ram          = var.quota['ram'],
                            floating_ips = var.quota['floating_ips'])
