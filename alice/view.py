@@ -1,4 +1,3 @@
-from __future__ import print_function
 from colorama import Fore, Back, Style, init
 from pathlib import Path
 import readline, glob
@@ -13,7 +12,7 @@ ERROR = ["Admin? Please, source openrc to get admin privileges",
          "Wrong input. Aborting...",
          "Quiting..."]
 
-MSG   = ["Wrong input",
+MSGE   = ["Wrong input",
          "Checking missing variables..\n",
          "Do you want to add the above user? (y/n) ",
          "Registering user..",
@@ -50,11 +49,11 @@ def ERROR(intg):
     print(Fore.RED + DOT + Style.RESET_ALL + ERROR[intg])
 
 def NOTIFY(intg):
-    print(Fore.YELLOW + DOT +  Style.RESET_ALL + MSG[intg])
+    print(Fore.YELLOW + DOT +  Style.RESET_ALL + MSGE[intg])
 
 def INFO(intg):
     try:
-        print(Fore.BLACK + DOT + Style.RESET_ALL + MSG[intg])
+        print(Fore.BLACK + DOT + Style.RESET_ALL + MSGE[intg])
     except TypeError:
         print(Fore.BLACK + DOT + Style.RESET_ALL + intg)
 
@@ -64,7 +63,7 @@ def ENABLED(user):
     return (Fore.RED + "\033[1mFalse" + Style.RESET_ALL)
 
 def GET_INPUT(intg):
-    raw = raw_input('\n' + Fore.BLACK + " : " + Style.RESET_ALL + MSG[intg])
+    raw = input('\n' + Fore.BLACK + " : " + Style.RESET_ALL + MSGE[intg])
     return raw
 
 def show_basic_info(user):

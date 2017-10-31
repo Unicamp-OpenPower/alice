@@ -7,7 +7,7 @@ Alice is a command-line interface for managing Openstack user accounts. It creat
 ## Getting Started
 
 
-This guide assumes that you have a full running Openstack installation on your server. Alice's stable version runs on Openstack Liberty release under Ubuntu 14.04.  
+This guide assumes that you have a full running Openstack installation on your server. Alice's stable version runs on Openstack Ocata release under Ubuntu 16.04.  
 
 ### Prerequisities
 

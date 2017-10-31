@@ -1,4 +1,4 @@
-from history import History
+from .history import History
 import timestring
 
 

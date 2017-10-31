@@ -11,7 +11,7 @@ import getopt
 
 from datetime import date, datetime
 
-from models.wrapper import Wrapper
+from .models.wrapper import Wrapper
 
 w = Wrapper()
 

@@ -1,8 +1,8 @@
-from history     import History
-from user        import User
-from bridge      import OpenstackBridge
-from db          import DBManager
-from dateparser  import DateParser
+from .history     import History
+from .user        import User
+from .bridge      import OpenstackBridge
+from .db          import DBManager
+from .dateparser  import DateParser
 from xkcdpass    import xkcd_password as xp
 from prettytable import PrettyTable
 from alice.view  import *
@@ -86,7 +86,7 @@ class Wrapper:
         db.insert(user)
 
     def __create_user(self, user):
-        print
+        print()
         warnings.filterwarnings("ignore")
 
         INFO(3)
@@ -123,7 +123,7 @@ class Wrapper:
             user.email = dict['email']
 
         if 'enabled' in dict:
-            if (isinstance(dict['enabled'], unicode)):
+            if (isinstance(dict['enabled'], str)):
                 try:
                     v = ast.literal_eval(dict['enabled'].title())
                     setattr(user, 'enabled', v)
@@ -310,4 +310,4 @@ class Wrapper:
                           FRDIM("---")])
 
 
-        print t
+        print(t)
